@@ -1,0 +1,2 @@
+# CI implementation pending
+No executable workflow is enabled by the documentation expansion. Codex J-002A owns backend-ci.yml; Claude J-002B owns desktop-ci.yml; both self-test and independently review. See docs/engineering/quality-gates.md for requirements, action pinning, runner isolation and branch protection. Owner enables actual required checks only after successful runs. Integration, security and VM workflows follow later tickets. Do not claim automated gates already enforced.

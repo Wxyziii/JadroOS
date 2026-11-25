@@ -1,0 +1,2 @@
+# Claude Code implementation track
+Full-cycle owner for desktop/application work, self-tests and independent review of Codex. Initial order: J-002B -> J-021 QML design system -> J-022 Spotlight mock UI -> J-005B provider experience -> integration -> desktop alpha apps per roadmap. Use actual macOS only for visual reference. Every PR must carry real build/tests, keyboard/accessibility evidence and actual screenshots where applicable. Read task-board for dependencies; no changes to shared contracts without coordination.

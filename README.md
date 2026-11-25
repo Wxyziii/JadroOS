@@ -29,6 +29,10 @@ JadroOS is an independent, experimental x86-64 desktop distribution project. It 
 | [Sources](docs/references.md) | Official technical references |
 | [Risk register](docs/planning/risks.md) | Key engineering and product risks |
 
+## Parallel development
+
+Both Codex and Claude Code implement and validate their own work, then independently cross-review. Begin with the [engineering handbook](docs/engineering/index.md), [VM setup](docs/engineering/vm-setup.md), [kickoff prompts](docs/engineering/agent-kickoff-prompts.md) and [parallel task board](docs/planning/task-board.md). CI implementation is assigned to the two initial coding tickets; no automated gates are enabled yet.
+
 ## Repository map
 
 - `desktop/spotlight/`: Qt Quick prototype, no provider network calls.
