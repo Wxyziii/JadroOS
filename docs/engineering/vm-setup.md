@@ -1,102 +1,106 @@
-# Step-by-step development environment
-Target: Windows 11 host, one Arch Linux KDE development VM, two Git worktrees. This is a development environment, not JadroOS itself. Later add a separate disposable test VM and then a physical SSD. Recommended on a 32 GiB host: dev 8 vCPU, 12 GiB RAM (16 only when alone), 150 GB thin disk; test 4 vCPU, 6 GiB RAM, 80 GB thin. Keep enough host RAM and free disk for snapshots. Do not allocate raw host disks.
+# Setting up the development environment (ticket T0.3)
+
+**Who:** the owner, by hand. **When:** Phase 0, before agents start.
+
+**Result:** a Windows 11 PC running one Arch Linux development VM (KDE Plasma installed, used for building and the nested JadroOS session), with Claude Code and Codex working in two separate git worktrees.
+
+Why a VM: the agents never get access to your Windows install or your files, and a snapshot undoes any mess. The VM is for **development**, not for judging GPU performance; that happens on the separate SSD in Phase 4 (T4.9).
+
+Sizing on a 32 GiB host: dev VM 8 vCPU, 12 GiB RAM (16 when nothing else runs), 150 GB thin disk. Later (Phase 5) a separate disposable QEMU test VM is added.
 
 ## 1. Install virtualization software
-Use VMware Workstation Pro on Windows (official download: https://knowledge.broadcom.com/external/article/368734/). Hyper-V or another hypervisor is an alternative; VM graphics and Wayland support vary. Check CPU virtualization enabled. Do not disable Windows security protections just to improve VM performance. If VMware graphics freeze, disable 3D temporarily, use current VMware tools, and test basic desktop; physical GPU testing comes later.
+Use VMware Workstation Pro on Windows (official download: https://knowledge.broadcom.com/external/article/368734/). Check CPU virtualization is enabled in firmware. **Enable 3D acceleration** for the VM: the nested KWin session needs working OpenGL. If the desktop freezes with 3D on, update VMware Tools, then try with 3D off and note in your T0.3 PR that nested sessions may be slow. Don't disable Windows security features for VM performance.
 
-## 2. Install Arch in VM (manual owner operation)
-Download official ISO and verify checksum/signature per https://archlinux.org/download/. Create custom x86-64 Linux VM, UEFI, NAT, single new virtual disk, ISO connected. No host disk passthrough, no shared folders, no host clipboard integration for untrusted testing. Boot ISO; verify UEFI and network:
+## 2. Install Arch in the VM
+Download the official ISO and verify its checksum/signature (https://archlinux.org/download/). Create a UEFI VM with NAT networking and one new virtual disk. No physical disk passthrough, no shared folders, no shared clipboard.
+
+Boot the ISO and check:
 ```sh
 ls /sys/firmware/efi/efivars
 lsblk -o NAME,SIZE,TYPE,MODEL
 ping -c 3 archlinux.org
+```
+```sh
 archinstall
 ```
-In guided installer select language/keyboard/timezone, correct virtual disk ONLY, automatic layout (ext4 fine for development, Btrfs for snapshot experiments), systemd-boot or GRUB per installer, normal user/password, desktop profile KDE Plasma, appropriate virtual GPU/default open driver, PipeWire, NetworkManager, standard linux kernel. Exact menu labels vary by version. Verify summary and disk identity before install. Never select a physical Windows drive. Reboot, detach ISO, log into Plasma Wayland. If Wayland is unusable in VMware, use available fallback for initial builds and record Wayland tests blocked. Do not install NVIDIA host driver for VMware virtual graphics.
+In `archinstall` choose: your language/keyboard/timezone, **only the virtual disk**, automatic layout (Btrfs recommended), systemd-boot, a normal user with a password, profile **Desktop → KDE Plasma**, PipeWire audio, NetworkManager, the standard `linux` kernel. Check the summary (especially the disk) before installing. Reboot, remove the ISO, log into **Plasma (Wayland)**.
 
-## 3. Update and install tools
-Owner manually runs:
+## 3. Install the development tools
 ```sh
-sudo pacman -Syu --needed base-devel git github-cli cmake ninja qt6-base qt6-declarative qt6-tools rust python nodejs npm curl firefox open-vm-tools
+sudo pacman -Syu --needed base-devel git github-cli cmake ninja clang \
+  qt6-base qt6-declarative qt6-wayland qt6-shadertools qt6-tools \
+  extra-cmake-modules kwin kdecoration layer-shell-qt plasma-workspace \
+  rust python nodejs npm open-vm-tools
+```
+```sh
 sudo systemctl enable --now vmtoolsd.service
 ```
-Verify package availability and services against current Arch packages; do not perform partial upgrades. If a tool is unavailable, stop and consult upstream rather than installing random AUR scripts.
+Install **Quickshell**: use the official Arch package if `pacman -Si quickshell` finds it; otherwise install the `quickshell` AUR package after reading its PKGBUILD. Always do full upgrades (`-Syu`), never partial ones. If a package name has changed, look it up on archlinux.org rather than running random scripts.
+
+Check:
 ```sh
-git --version
-cmake --version
-rustc --version
-cargo --version
-node --version
-npm --version
+git --version && cmake --version && cargo --version && node --version && quickshell --version
+```
+```sh
 echo "$XDG_SESSION_TYPE"
 ```
-Check Qt version with available Qt tool (e.g. qmake6 -query QT_VERSION) or CMake detection. Take clean VM snapshot before agent setup. No host shared credentials or personal files.
+The last one should print `wayland`. **Take a VM snapshot now** ("clean tools").
 
-## 4. Configure Git and install agents
-Use own name/email (GitHub noreply address optional), authenticate GitHub manually with gh auth login and gh auth setup-git if HTTPS desired. Keep Git credentials in supported credential manager; never paste token into agent prompt.
+## 4. Git, GitHub and the agents
 ```sh
 git config --global user.name "YOUR NAME"
-git config --global user.email "YOUR GITHUB EMAIL"
+git config --global user.email "YOUR GITHUB EMAIL OR NOREPLY"
 gh auth login
 gh auth setup-git
 mkdir -p "$HOME/.local/bin" "$HOME/.local/npm"
 npm config set prefix "$HOME/.local/npm"
-```
-Add these directories to PATH in shell startup file appropriate to your shell (example Bash):
-```sh
 echo 'export PATH="$HOME/.local/bin:$HOME/.local/npm/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 npm install -g @openai/codex @anthropic-ai/claude-code
-codex --version
-claude --version
+codex --version && claude --version
 ```
-Official npm methods documented in https://github.com/openai/codex and https://support.claude.com/en/articles/14552382-your-first-day-in-claude-code; native installers also available. Check current requirements. Do not use sudo npm or approval bypass flags. Start each CLI as normal user, sign in via official browser flow (Codex ChatGPT account, Claude eligible account), and verify model access/plan. Do not extract tokens, share account credentials or put API keys in repo. If SDK or API key requested, check billing before using.
+Install docs: https://github.com/openai/codex and https://support.claude.com/en/articles/14552382-your-first-day-in-claude-code. Never use `sudo npm` or approval-bypass flags. Start each CLI once as your normal user and sign in through the official browser flow. Never paste tokens into a prompt or into the repo.
 
-## 5. Get the foundation into main
-Owner reviews PR #1 and merges after accepting architecture scaffold and limitations; existing main initially only had README. If not merged, do NOT create worktrees from main expecting source code. To inspect pending changes use branch foundation/jadroos-architecture; start actual implementation from accepted main. The foundation PR intentionally includes unvalidated code; its merge accepts a scaffold, not a tested release. If owner requires pre-merge validation, branch from foundation for checks and merge fixes into that branch first through owner review.
-
+## 5. Get the code
+The foundation PR must be merged first (T0.1). Then:
 ```sh
-mkdir -p ~/src
-cd ~/src
+mkdir -p ~/src && cd ~/src
 git clone https://github.com/Wxyziii/JadroOS.git JadroOS
 cd JadroOS
-git switch main
-git pull --ff-only
-test -f AGENTS.md && test -f services/policy/Cargo.toml && test -f desktop/spotlight/Main.qml
+git switch main && git pull --ff-only
+test -f AGENTS.md && test -f docs/planning/roadmap.md && echo "foundation present"
 ```
-If test fails, stop: main is not the accepted foundation yet.
+If `foundation present` doesn't print, stop: the foundation isn't merged yet.
 
-## 6. Create independent worktrees
+## 6. One worktree per agent
 ```sh
-git worktree add -b codex/J-002A-backend-foundation ../jadro-codex main
-git worktree add -b claude/J-002B-desktop-foundation ../jadro-claude main
+git worktree add -b codex/T0.4-dev-nested ../jadro-codex main
+git worktree add -b claude/T0.7-design-tokens ../jadro-claude main
 git worktree list
 ```
-Coordinator checkout stays clean. Worktrees share Git metadata, not working files. They do not isolate credentials or home files; for higher isolation use two separate VMs/clones and least privileges. Both agents work only in assigned directory; keep separate build output; do not run sudo or modify host settings. Use VM snapshot and Git commits for recovery (snapshot is not a backup).
+`~/src/JadroOS` stays clean and is where you review and merge. Each agent only works in its own folder. Worktrees prevent edit collisions but are not a security boundary. For stronger isolation, use separate Linux users or VMs.
 
-## 7. Launch both agents
-Open two Konsole tabs/windows. Terminal A:
+## 7. Start the agents
+Two Konsole tabs:
 ```sh
-cd ~/src/jadro-codex
-codex
+cd ~/src/jadro-codex && codex
 ```
-Terminal B:
 ```sh
-cd ~/src/jadro-claude
-claude
+cd ~/src/jadro-claude && claude
 ```
-Paste corresponding kickoff prompt from [agent prompts](agent-kickoff-prompts.md). Both start coding and self-validating immediately. Use default/restrictive workspace approval modes; review actual commands, especially network, install, git push and anything outside workspace. Owner performs necessary privileged package installation separately. Neither agent modifies root CMake except Claude's explicit first-ticket reservation. Neither edits the other's worktree.
+Paste the matching prompt from [agent-kickoff-prompts.md](agent-kickoff-prompts.md). Keep the default (asking) permission modes and read what they want to run, especially installs, network access, `git push`, and anything outside their folder. If an agent needs a package installed, it asks you and you run `sudo pacman` yourself.
 
-## 8. Review and integrate
-Each author opens PR from its own branch after self-validation. Owner assigns cross-review against exact SHA, ideally separate detached worktree; reviewer runs checks and sends findings. Author fixes; owner merges in dependency order after review. Run combined structural, Rust and Qt build/tests on integration checkout. Do not auto-merge. Initial commands:
+## 8. Daily loop
+1. Agent finishes a ticket and opens a PR (see [workflow.md](workflow.md)).
+2. You review in `~/src/JadroOS`, run the nested session or tests if you want, and merge.
+3. Agents start the next ticket from a fresh branch off the updated `main`:
 ```sh
-python3 scripts/check_repo.py
-cargo test --manifest-path services/policy/Cargo.toml
-cmake -S . -B build -G Ninja
-cmake --build build
-./build/desktop/spotlight/jadro-spotlight
+git fetch origin && git worktree add -b claude/T0.8-shell-skeleton ../jadro-claude-2 origin/main
 ```
-These are commands to execute, not verified results. Later CI adds automated checks and PR gating. Once foundation validation/contract gates pass, assign next tickets from task board.
+(or reuse the same worktree after `git switch -c <new-branch> origin/main` once the previous branch is merged).
 
-## 9. Test VM and hardware milestones
-At platform/live ISO stage create separate UEFI VM (later QEMU/OVMF for automation). Attach only disposable virtual disks, test install and recovery, dual boot with two virtual disks. Do not use daily Windows installation. After boot/rollback/installer safety gates, use separate physical SSD and backup Windows/BitLocker recovery key; owner supervises. Native NVIDIA, HDR, VRR, high-refresh and gaming tests require physical hardware. No physical-disk writes or firmware changes by agents without explicit approval.
+## 9. Later environments
+- **Phase 1:** install the JadroOS session file by hand (instructions come with T1.5) and pick "JadroOS" at the login screen. Keep Plasma as the fallback.
+- **Phase 4 (T4.9):** install Arch on the **separate physical SSD** and run the JadroOS session there for real-GPU testing. Back up Windows and your BitLocker recovery key first. Agents never write to physical disks.
+- **Phase 5:** add a disposable QEMU/OVMF test VM for ISO boots (QEMU may need to run on the real-hardware Arch install, because nested virtualization in VMware is unreliable).
+- **Phase 8–9:** boot-switch and installer tests use two-disk VMs first; physical dual-boot testing only after the VM gate, with you supervising.

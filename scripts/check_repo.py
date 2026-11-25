@@ -8,7 +8,10 @@ required = [
     "README.md", "AGENTS.md", "SECURITY.md", "docs/product/requirements.md",
     "docs/architecture/overview.md", "docs/design/references.md",
     "docs/design/spotlight.md", "docs/security/threat-model.md",
-    "docs/planning/roadmap.md", "services/policy/src/lib.rs",
+    "docs/planning/roadmap.md", "docs/planning/task-board.md",
+    "docs/engineering/workflow.md", "docs/decisions/0005-quickshell-shell.md",
+    "docs/decisions/0006-phased-build-order.md", "docs/decisions/0007-language-policy.md",
+    "CLAUDE.md", "services/policy/src/lib.rs",
     "desktop/spotlight/Main.qml", "protocols/agent-request.v1.schema.json",
 ]
 errors = [f"Missing {p}" for p in required if not (root / p).is_file()]

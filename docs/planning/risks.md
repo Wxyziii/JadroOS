@@ -1,9 +1,11 @@
 # Risk register
-Severity/likelihood are preliminary qualitative ratings; reassess after spikes.
+Severity/likelihood are preliminary qualitative ratings; reassess at each phase exit gate.
 
 | Risk | Severity | Likelihood | Mitigation / gate |
 |---|---|---|---|
 | KWin private ABI breakage | high | high | supported API first, pin tested versions, fallback session |
+| Quickshell–KWin integration gaps (window list, focus, global menu) | high | medium | T0.5 spike before Phase 1 UI work; fallback to own Qt shell with LayerShellQt (ADR-0005) |
+| VM can't show real GPU behavior | medium | high | real-hardware testing from Phase 4 (T4.9) instead of at the end |
 | True glass compositor performance | high | high | effect spike, frame budget, static tint fallback |
 | Provider auth/terms change | high | high | adapter isolation, official docs, no unauthorized workarounds |
 | Instant quota misrouting | high | medium | explicit routing tests and no silent fallback |
@@ -13,7 +15,7 @@ Severity/likelihood are preliminary qualitative ratings; reassess after spikes.
 | Anti-cheat/app incompatibility | high | high | compatibility matrix, Windows fallback |
 | Apple IP/branding rights | high | medium | original assets, reference links, review before release |
 | iOS closed protocols | medium | high | scoped open pairing, avoid parity promises |
-| Scope exceeds maintainer capacity | high | high | vertical slices, prioritize, reuse upstream |
+| Scope exceeds maintainer capacity | high | high | phased roadmap (ADR-0006), at most two phases in flight, exit gates, reuse upstream |
 | Supply-chain compromise | critical | medium | signed packages, clean builds, SBOM, review |
 | Accessibility regressions | high | medium | keyboard/AT-SPI and contrast gates |
 | Public repo secrets | high | medium | no credentials, scanning and revoke process |

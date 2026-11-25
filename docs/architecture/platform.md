@@ -1,4 +1,6 @@
 # Arch platform, installer, updates and dual boot
+
+**When:** live ISO in Phase 5 (T5.3), Windows reboot switch in Phase 8 (T8.1–T8.2), installer, snapshots, rollback and signed updates in Phase 9 (T9.1–T9.3). Everything is tested in VMs before real disks. See the [roadmap](../planning/roadmap.md).
 ## Baseline
 Vanilla Arch x86-64, UEFI/GPT; linux + linux-lts fallback, mkinitcpio, systemd, KWin/Wayland, NetworkManager, PipeWire. Start with upstream Arch VM and Plasma fallback. Build a custom Archiso releng-derived profile only after desktop package tests. Use Arch clean chroots and signed pacman packages; publish source and license notices as required. Do not use partial upgrades.
 

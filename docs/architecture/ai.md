@@ -1,5 +1,8 @@
 # AI platform and provider contracts
-Status: planned; routing library is a local reference only. Revalidate provider terms and capabilities before enabling real requests.
+Status: planned; routing library is a local reference only.
+
+**When:** Phase 3 builds only the *handoff* routes (open the official ChatGPT/Claude app or site, launch the Codex / Claude Code CLI). Everything else on this page (sign-in, native inference, agents, tool broker, local AI) is Phase 7 and starts with the owner verifying provider terms (T7.1). See the [roadmap](../planning/roadmap.md).
+ Revalidate provider terms and capabilities before enabling real requests.
 
 ## Provider matrix
 | Route | Auth | Usage | Context |

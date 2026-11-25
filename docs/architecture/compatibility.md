@@ -1,4 +1,6 @@
 # App compatibility and gaming
+
+**When:** pacman, Flatpak and AppImage in the App Center in Phase 6 (T6.6); Wine/Bottles, Gaming Center and Windows fallback in Phase 8 (T8.4–T8.6). See the [roadmap](../planning/roadmap.md).
 The installer can recognize many formats; it cannot execute every app. Provide per-app compatibility state: native/tested, works with runtime, experimental, unsupported, unknown. Record app version, runtime version, GPU/driver, test date and known limitations.
 
 | Format | Runtime | Rules |

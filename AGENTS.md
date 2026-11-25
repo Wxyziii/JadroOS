@@ -1,6 +1,30 @@
-# Instructions for coding agents
-Read README, product requirements, relevant ADRs, threat model and roadmap before changes. Preserve confirmed decisions: actual macOS visual references only, individual-window Alt+Tab, General-default Spotlight, official Instant route, independent Claude/Codex, Arch foundation and explicit Windows reboot. Do not invent provider support, quota rules, build results or screenshots.
+# Instructions for coding agents (Codex and Claude Code)
 
-Both agents are full-cycle engineers: code, compile, test, debug, validate own work and independently cross-review the other agent's exact PR SHA. Read docs/engineering/agent-coordination.md, code-ownership.md, quality-gates.md, definition-of-done.md, integration-contracts.md and docs/planning/task-board.md. Codex default ownership backend/platform; Claude default desktop/apps. Work one scoped ticket at a time in separate worktree/branch; respect assigned exact paths and shared contract gates. No unrelated rewrites. Write regression/negative tests, run applicable checks, record versions, exact commands, exit codes, limitations; skipped or unrun checks are not passes. Fix findings, rerun and obtain independent review and owner integration approval before merge. Initial tasks J-002A and J-002B are in docs/engineering/agent-kickoff-prompts.md.
+## Read first
+1. [Roadmap](docs/planning/roadmap.md): phases, tickets, dependencies, what must wait
+2. [Task board](docs/planning/task-board.md): your next ticket
+3. [Workflow](docs/engineering/workflow.md): ownership, ticket lifecycle, review levels, definition of done
+4. The docs your ticket touches (design, architecture, requirements, ADRs)
 
-Mark placeholders and experimental code. Never store secrets, use undocumented provider endpoints, scrape cookies, automatically bill, grant arbitrary root, bypass anti-cheat, or run disk/firmware operations on host. No Apple proprietary assets or third-party KDE lookalike visual references. Use VM and mock adapters before real operations. No sudo or approval bypass for agents; human performs necessary privileged actions. Human approval for privilege, billing, destructive changes, releases and license choices. Do not merge or publish releases automatically.
+## Your role
+- **Codex:** platform engineer. Owns `tools/`, `scripts/`, `.github/workflows/`, `platform/`, `services/`, and pure-logic KWin scripts.
+- **Claude Code:** desktop engineer. Owns `desktop/` (shell, design system, KWin decoration/effects, Spotlight UI) and app UIs in `apps/`.
+- Both: write the code, build it, test it, fix it, show real evidence. Work on one ticket at a time, in your own worktree, on a branch named `<codex|claude>/T<phase>.<n>-<short-name>`.
+
+## How to work
+- Only start a ticket whose dependencies are `done`. Respect the "Don't start… before…" table in the roadmap.
+- Stay in your paths; anything else needs its own ticket or the owner's OK.
+- For visible changes, run the nested session (`tools/dev-nested.sh`) and attach screenshots (`tools/screenshot-nested.sh`).
+- Open a PR with the template filled in and update your ticket's row on the task board in the same PR. Never merge.
+- Tickets marked "cross-reviews" need the other agent's review before the owner merges.
+
+## Decisions you must keep
+Real macOS is the only visual reference (no Apple assets, no KDE lookalike themes as sources) · Alt+Tab switches individual windows in most-recent order · Spotlight always opens on General · ChatGPT Instant goes only to the official app/site · Claude, Codex and Claude Code are separate routes · Arch + KWin + Quickshell shell + Qt apps; Rust only for services from Phase 3 · Windows switch is an explicit reboot.
+
+## Never
+- Run `sudo`, use approval-bypass flags, or touch disks, boot entries or firmware. Ask the owner to run privileged steps.
+- Put credentials, tokens or API keys in the repo, logs or prompts; scrape cookies; use undocumented provider endpoints.
+- Make real AI provider calls or anything that could cost money before Phase 7 and the owner's approval.
+- Claim a build, test, screenshot or result you didn't actually produce. "Not run" is fine; faking is not.
+- Bypass anti-cheat, grant arbitrary root, or merge/publish releases.
+- Rewrite unrelated code or reformat files outside your ticket.

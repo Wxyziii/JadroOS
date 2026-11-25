@@ -1,4 +1,10 @@
 # Changelog
+## Unreleased (planning update)
+- Replace the J-xxx backlog with a ten-phase roadmap (T<phase>.<n> tickets, exit gates, "what must wait" rules); desktop first, all planned features kept (ADR-0006).
+- Shell hosted by Quickshell on KWin, with a window-list spike before Phase 1 (ADR-0005); Rust only for services from Phase 3 (ADR-0007).
+- Merge seven process documents into one workflow guide with two review levels; new task board with per-agent next steps.
+- Update VM setup (Quickshell, KWin dev packages, nested session), kickoff prompts, testing (per-phase environments, CI plan), stack, folder READMEs and acceptance checklists by phase.
+
 ## 0.0.1-dev — 2026-11-25
 - Establish product requirements, design references, architecture, security and roadmap.
 - Add offline Qt Quick Spotlight route-preview scaffold and pure Rust routing/policy tests.

@@ -24,3 +24,5 @@ LUKS2 optional at install with verified recovery key; UEFI Secure Boot after tes
 
 ## Privacy defaults
 No telemetry, cloud history, screen capture, clipboard history, file indexing outside selected scope, or background agents by default. Clear data retention controls. Consent may be revoked; running jobs stop and grants invalidated. Incident process: contain, revoke keys, preserve redacted evidence, patch, notify affected users according to applicable obligations.
+
+**When security reviews happen:** lock screen (T4.3), search contract (T3.1), agent/tool/system broker (T7.4), screen capture and input (T7.5), boot switch (T8.1), installer and updates (T9.1–T9.3). Each is a cross-reviewed ticket ([workflow.md](../engineering/workflow.md)).

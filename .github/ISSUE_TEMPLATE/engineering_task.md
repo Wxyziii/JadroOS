@@ -1,13 +1,11 @@
 ---
 name: Engineering task
-about: Assign a scoped implementation and validation ticket
-title: "[J-xxx] "
+about: A roadmap ticket, or new work proposed for the roadmap
+title: "[T_._] "
 ---
-## Requirement / acceptance criteria
-## Author track and exact owned paths
-## Dependencies / agreed contract
-## Base SHA / branch
-## Implementation and test plan
-## Applicable quality gates
-## Independent reviewer
-## Evidence / blockers
+## Roadmap ticket / phase
+## Deliverable and acceptance
+## Owner and paths
+## Depends on
+## Review level (standard / cross-review)
+## Notes

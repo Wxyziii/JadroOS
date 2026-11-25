@@ -1,4 +1,6 @@
 # Spotlight specification
+
+**When:** Phase 3 builds the Spotlight UI in the shell, General search (apps, settings, opt-in files, calculator) and the AI tabs as *handoffs* to the official apps and CLIs. Phase 7 adds native answers inside Spotlight, the Medium/High/Extra High modes and Local AI. See the [roadmap](../planning/roadmap.md).
 Confirmed: General default, AI tabs, official app where possible. Alt+Tab remains system window switching. Proposed Alt+Space opens Spotlight; Ctrl+Tab and Ctrl+1..6 switch tabs; shortcuts configurable. Do not intercept Alt+Tab inside Spotlight.
 
 ## Tabs and routing
@@ -32,4 +34,4 @@ Exact app/name first, prefix, fuzzy, recent local actions, indexed file results;
 Open official provider URL using trusted constant or verified app handler. If official external prompt API is unavailable, show Copy prompt button and Open app; avoid forced paste, fake keystrokes or automatic sending. If native app unavailable, open official web fallback after showing target. No silent paid fallback. Show provider unavailable, disconnected, model unavailable, rate limit and consent denied states. Preserve Unicode and multiline prompts. Do not include user prompt in URL, process arguments, logs or telemetry. For Codex/Claude Code use explicit working directory and reviewed sandbox; no command injection.
 
 ## Acceptance
-Fresh open always General. Alt+Tab retains OS MRU. Selecting ChatGPT defaults Instant. Instant routes only official chat. Medium/high modes require detected native capability or explicit user selection in official UI. Claude and Codex are independent. All tabs keyboard operable, screen-reader labels present. No network call from typing or General. Provider failure does not auto-bill. Prototype only renders UI and emits a local status; no actual provider integration yet.
+Fresh open always General. Alt+Tab retains OS MRU. Selecting ChatGPT defaults Instant. Instant routes only official chat. Medium/high modes require detected native capability or explicit user selection in official UI. Claude and Codex are independent. All tabs keyboard operable, screen-reader labels present. No network call from typing or General. Provider failure does not auto-bill. The current `desktop/spotlight` prototype only renders UI and emits a local status; it is replaced by the shell overlay in T3.3.

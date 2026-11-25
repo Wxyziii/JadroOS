@@ -1,2 +1,3 @@
-# CI implementation pending
-No executable workflow is enabled by the documentation expansion. Codex J-002A owns backend-ci.yml; Claude J-002B owns desktop-ci.yml; both self-test and independently review. See docs/engineering/quality-gates.md for requirements, action pinning, runner isolation and branch protection. Owner enables actual required checks only after successful runs. Integration, security and VM workflows follow later tickets. Do not claim automated gates already enforced.
+# CI (planned)
+
+No workflow is enabled yet. Ticket T0.6 (Codex) adds the first one; [testing.md](../../docs/engineering/testing.md) lists which jobs start in which phase and the CI safety rules (read-only tokens, pinned actions, no secrets in PR jobs). CI and release workflow changes require cross-review. The owner turns on branch protection once jobs run reliably.

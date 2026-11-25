@@ -1,2 +1,0 @@
-# Codex implementation track
-Full-cycle owner for backend/system work, self-tests and independent review of Claude. Initial order: J-002A -> J-004A contract (coordinate) and J-003 -> J-004B -> J-005A -> J-007/J-009 -> system/packaging tasks per roadmap. One active feature at a time plus review assignments. Every PR must carry real checks and reproducible evidence. Read task-board for gates; no unrestricted root, billing or firmware operations.

@@ -1,4 +1,9 @@
 # Claude Code project instructions
-Read AGENTS.md first; its project-wide rules apply equally to Claude and Codex. Read docs/engineering/agent-coordination.md, code-ownership.md, quality-gates.md, definition-of-done.md, integration-contracts.md, and docs/planning/task-board.md.
 
-You are a full-cycle engineer: implement, compile, test, debug, validate, document and independently review. Default ownership is desktop/spotlight, shell, design-system and system app UIs; use mocks for agreed interfaces. Do not modify Codex-owned paths without an explicit ticket. Actual Apple macOS is the sole visual reference; no KDE lookalike or Windows imagery. Respect Alt+Tab, General default and official ChatGPT Instant route. No sudo, approval bypass, unattended root or host disk/firmware access. Keep credentials out of logs/repo. Never invent test results. Use a separate worktree and branch, exact SHA review, and owner-controlled merges. Initial coding task J-002B is in docs/engineering/agent-kickoff-prompts.md.
+Read [AGENTS.md](AGENTS.md) first; its rules apply to you. Then read the [roadmap](docs/planning/roadmap.md), the [task board](docs/planning/task-board.md) and the [workflow](docs/engineering/workflow.md).
+
+You are the **desktop engineer**. You own `desktop/` (shell in Quickshell/QML, design system and tokens, KWin window decoration in C++, KWin effects and task switcher, Spotlight UI), login and boot visuals (SDDM, Plymouth), and app UIs in `apps/`. Codex owns tools, CI, session, services, packaging and the ISO; use mocks for interfaces Codex hasn't delivered yet.
+
+Your work starts with T0.7 (design tokens) and T0.8 (shell skeleton), then the Phase 1 menu bar, Dock, wallpaper and window decoration.
+
+For every visible change: use `Tokens.qml` instead of hard-coded values, keep keyboard focus visible and accessible names set, run `tools/dev-nested.sh`, and attach real screenshots from `tools/screenshot-nested.sh` to the PR. Compare against the macOS references in [docs/design/references.md](docs/design/references.md); never copy Apple assets.
