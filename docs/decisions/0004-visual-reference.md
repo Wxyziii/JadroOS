@@ -1,0 +1,2 @@
+# ADR-0004: Actual macOS visual baseline
+Status: confirmed. Actual Apple macOS (Golden Gate current, Tahoe imagery supplemental) is the sole design reference. Windows supplies behavior only. No imitation KDE themes or Windows visuals. Original Jadro assets with rights; reference Apple screenshots by external link. Consequence: substantial custom shell and effects work; third-party apps may remain visually different. Validate reference gallery and accessibility/performance together. Do not claim pixel-identical or affiliation.

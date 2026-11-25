@@ -1,0 +1,2 @@
+# ADR-0003: Least privilege
+Status: proposed mandatory security baseline. Broad user-authorized agent capabilities do not imply permanent root. Use separate user orchestration and typed system broker, caller identity, polkit, scoped grants, trusted approval and audit. Alternatives: sudo NOPASSWD or arbitrary root command interface rejected. Consequence: more engineering, but constrained blast radius. Validate negative tests, replay resistance, cancellation and independent review before enabling real administrative actions.

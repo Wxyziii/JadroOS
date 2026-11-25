@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "desktop": {
+    "window_switch": "alt-tab-individual",
+    "spotlight_shortcut": "Alt+Space",
+    "spotlight_default_tab": "General",
+    "visual_reference": "actual-macos",
+    "reduce_motion": false
+  },
+  "ai": {
+    "chatgpt_default_mode": "instant",
+    "instant_route": "official-chatgpt",
+    "native_inference_enabled": false,
+    "automatic_paid_fallback": false,
+    "background_agents": false,
+    "desktop_control_enabled": false,
+    "admin_operations_enabled": false
+  },
+  "privacy": {
+    "telemetry": false,
+    "clipboard_history": false,
+    "file_indexing": false,
+    "persist_chat_history": false
+  }
+}

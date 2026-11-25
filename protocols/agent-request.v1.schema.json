@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JadroOS agent request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "request_id",
+    "provider",
+    "mode",
+    "prompt"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "provider": {
+      "enum": [
+        "chatgpt",
+        "claude",
+        "codex",
+        "claude-code",
+        "local"
+      ]
+    },
+    "mode": {
+      "enum": [
+        "instant",
+        "medium",
+        "high",
+        "extra-high",
+        "agent",
+        "local"
+      ]
+    },
+    "prompt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100000
+    },
+    "workspace": {
+      "type": "string",
+      "maxLength": 4096
+    },
+    "attachments": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "string",
+        "maxLength": 4096
+      }
+    }
+  }
+}

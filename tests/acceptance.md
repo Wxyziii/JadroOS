@@ -1,0 +1,14 @@
+# Acceptance checklist (not executed)
+- [ ] Qt prototype builds and launches in a disposable Linux VM; no network request.
+- [ ] Fresh Spotlight General, reset and keyboard tab cycling work.
+- [ ] ChatGPT Instant preview never suggests native quota route.
+- [ ] Rust policy unit tests pass; unknown/out-of-scope denied at broker integration.
+- [ ] Alt+Tab individual-window MRU, reverse and Escape in KWin session.
+- [ ] Official provider handoff no prompt in URLs or process args; failed handoff retains prompt.
+- [ ] Native provider eligibility, rate-limit, logout and no secret logs.
+- [ ] Prompt injection, symlink escape, replay, privilege denial and kill switch.
+- [ ] Two-disk VM install/switch no changes to unselected disk; BootNext verified.
+- [ ] Snapshot/update failure recovery and independent backup restore.
+- [ ] Native CS2 and representative Proton titles on NVIDIA; incompatible title Windows fallback.
+- [ ] Mixed monitor scaling/refresh, accessibility and reduced transparency.
+- [ ] Signed package/ISO, SBOM, legal review and reproducible build inputs.

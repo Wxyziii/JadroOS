@@ -1,0 +1,17 @@
+/build/
+/target/
+**/target/
+/out/
+/work/
+*.iso
+*.img
+*.qcow2
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+credentials.json
+__pycache__/

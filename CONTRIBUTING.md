@@ -1,0 +1,2 @@
+# Contributing
+Open or select a roadmap ticket, discuss contract changes via ADR, create a feature branch, implement the smallest testable slice, update docs and tests, and open a PR. Reviewers check user experience, security, licensing and compatibility. No secrets or proprietary assets. Use conventional descriptive commits. Before contributing code beyond the initial scaffold, owner must settle licensing and contribution terms. No production release or signed package before review.
