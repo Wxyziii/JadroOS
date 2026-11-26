@@ -11,7 +11,7 @@ required = [
     "docs/planning/roadmap.md", "docs/planning/task-board.md",
     "docs/engineering/workflow.md", "docs/decisions/0005-quickshell-shell.md",
     "docs/decisions/0006-phased-build-order.md", "docs/decisions/0007-language-policy.md",
-    "CLAUDE.md", "services/policy/src/lib.rs",
+    "CLAUDE.md", "docs/architecture/remote-access.md", "services/policy/src/lib.rs",
     "desktop/spotlight/Main.qml", "protocols/agent-request.v1.schema.json",
 ]
 errors = [f"Missing {p}" for p in required if not (root / p).is_file()]
@@ -28,6 +28,10 @@ assert defaults["desktop"]["spotlight_default_tab"] == "General"
 assert defaults["ai"]["instant_route"] == "official-chatgpt"
 assert defaults["ai"]["automatic_paid_fallback"] is False
 assert defaults["ai"]["admin_operations_enabled"] is False
+assert defaults["remote"]["remote_desktop_enabled"] is False
+assert defaults["remote"]["game_streaming_enabled"] is False
+assert defaults["remote"]["unattended_access"] is False
+assert defaults["remote"]["network"] == "tailscale-only"
 json.loads((root / "protocols/agent-request.v1.schema.json").read_text())
 if errors:
     raise SystemExit("\n".join(errors))

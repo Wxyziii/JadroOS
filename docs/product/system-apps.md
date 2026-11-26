@@ -16,6 +16,7 @@ All applications share original macOS-inspired QML components, keyboard accessib
 | Backup | snapshots, external backup, recovery browser | Btrfs, restic/borg | 9 |
 | Preview | PDF/image/audio previews, annotations later | existing licensed engines | 6 |
 | Welcome | first-run setup: account, appearance, privacy, AI providers intro | Settings backends | 6 |
+| Remote | connect to other tailnet devices (RDP, Moonlight), favorites; host settings live in Settings → Remote Access | Tailscale, KRdp, RDP client, Moonlight, jadro-remote service | 6 (streaming 8) |
 | Continuity | paired transfer, clipboard, optional device input | LocalSend/KDE Connect/open protocols | 9 |
 
 Files transfer acceptance: pause where feasible, retry, speed/ETA, conflict prompt, no silent overwrite, safe symlink/permissions handling, removable-media failure. Activity process termination requires confirmation for critical/system processes. Device controls show unsupported hardware instead of guessing. No system daemon exposed directly to provider. Notes/calendar/mail/office can be existing applications first; custom replacements later only when justified.

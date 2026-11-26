@@ -43,6 +43,10 @@ Manual checks that back each phase's exit gate in the [roadmap](../docs/planning
 - [ ] Files: views, Quick Look, tags, transfer queue with pause/retry/conflict prompt, no silent overwrite (FS-01)
 - [ ] Settings, Activity, Devices core functions (SYS-01); critical-process termination asks for confirmation
 - [ ] App Center installs pacman, Flatpak and AppImage apps; unsupported formats explained
+- [ ] Remote access off after install; when on, reachable over Tailscale and closed on every other interface (port scan from LAN)
+- [ ] Remote connection needs the remote password; attended mode asks the person at the PC; indicator and Disconnect work; start/end notifications and log entry
+- [ ] Remote user reaching the lock screen must enter the password; agents cannot enable remote access
+- [ ] Remote app lists tailnet devices and connects to another PC
 
 ## Phase 7: Native AI and agents
 - [ ] Provider terms and eligibility verified with a test account; no secrets in logs; logout/revoke works
@@ -55,6 +59,7 @@ Manual checks that back each phase's exit gate in the [roadmap](../docs/planning
 - [ ] Two-disk VM: restart into Windows sets BootNext, reads it back, leaves the unselected disk unchanged
 - [ ] Physical dual boot: switch both ways on real firmware
 - [ ] Native CS2 and representative Proton titles on NVIDIA; incompatible title offers the Windows restart
+- [ ] Game Streaming via Moonlight over Tailscale with NVENC; pairing required; latency and FPS recorded
 
 ## Phase 9: Installer, updates, release
 - [ ] Installer never touches unselected disks (two-disk VM, disk hash unchanged)

@@ -2,7 +2,7 @@
 Date: 2026-11-25. Status: proposed unless explicitly marked Confirmed.
 
 ## Product contract
-Confirmed: Arch-based foundation; actual macOS is the exclusive visual reference (no KDE lookalike theme as a design source); Windows functionality and gaming compatibility; Alt+Tab switches individual windows; Spotlight opens on General and includes AI provider tabs; use official provider apps where possible; regular ChatGPT should be accessible independently of Codex; minimize consumption of advanced usage by using official Instant chat for ordinary questions; one-click reboot into Windows and a reverse path.
+Confirmed: Arch-based foundation; actual macOS is the exclusive visual reference (no KDE lookalike theme as a design source); Windows functionality and gaming compatibility; Alt+Tab switches individual windows; Spotlight opens on General and includes AI provider tabs; use official provider apps where possible; regular ChatGPT should be accessible independently of Codex; minimize consumption of advanced usage by using official Instant chat for ordinary questions; one-click reboot into Windows and a reverse path; built-in remote control of the PC (AnyDesk/Parsec-style) through Tailscale.
 
 Baseline: vanilla Arch, KWin/Wayland, a Quickshell-hosted QML shell (ADR-0005), Qt Quick apps, Rust services from Phase 3 (ADR-0007), UEFI x86-64, first validate in VM, then separate SSD. No need to fork a kernel or write a compositor before validating upstream integration. Build order: [ADR-0006](../decisions/0006-phased-build-order.md).
 
@@ -24,6 +24,9 @@ Baseline: vanilla Arch, KWin/Wayland, a Quickshell-hosted QML shell (ADR-0005), 
 | GAME-01 | 8 | Steam and Proton, controller/audio, NVIDIA/AMD/Intel validation, high refresh and VRR gates; no anti-cheat bypass. |
 | FS-01 | 6 | Finder-like navigation, Quick Look, tags, transfer queue, conflict handling, safe mount handling. |
 | SYS-01 | 4 (Control Center), 6 (apps) | Settings, process/device/service/log managers, audio routing, monitor settings and network tools. |
+| REM-01 | 6 | Remote control of this PC (AnyDesk-style) over the user's Tailscale tailnet only: off by default, tailnet-only ports, separate remote password, portal consent, visible session indicator with Disconnect, connection log, lock screen never bypassed. Unattended access is opt-in. |
+| REM-02 | 6 | Remote app connects from JadroOS to other devices in the tailnet (RDP), with device list and favorites. |
+| REM-03 | 8 | Low-latency game streaming (Parsec-style) via Sunshine/Moonlight over the tailnet, hardware encoding, controller input, pairing required. |
 | CON-01 | 9 | Cross-platform transfer/clipboard with explicit pairing; iOS restrictions displayed; no claim of full Continuity parity. |
 | SEC-01 | every phase; broker in 7 | No permanent agent root, credentials in keyring, no public listener, no secrets in logs, explicit approval and revocation. |
 | A11Y-01 | every phase from 1 | Keyboard navigation, focus visibility, accessible names, reduced motion/transparency, high contrast and scaling. |

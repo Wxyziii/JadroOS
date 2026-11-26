@@ -13,6 +13,7 @@ JadroOS is an independent, experimental x86-64 desktop distribution. It is not A
 - **Spotlight with AI:** local search for apps, settings and files, plus tabs for ChatGPT, Claude, Codex, Claude Code and local AI, first as handoffs to the official apps, later with answers and agents built in
 - **Safe AI agents:** agents that can do tasks on the PC through a permission broker, with approvals, audit log and a stop button
 - **Windows and gaming:** one-click restart into Windows and back, Gaming Center with Steam/Proton, Wine for Windows apps, Windows fallback for anti-cheat titles
+- **Remote control over Tailscale:** AnyDesk-style remote desktop of this PC from any device, a Remote app to control your other PCs, and Parsec-style low-latency game streaming, all only inside your own tailnet
 - **System apps:** Settings, Files (Finder-style with Quick Look), Activity, Devices, App Center, Welcome, Backup
 - **A real distro:** own package repo, live ISO, installer, snapshots before updates with rollback, signed updates, phone sharing
 
@@ -30,9 +31,9 @@ The desktop comes first, then everything plugs into it. Ten phases ([ADR-0006](d
 | 3 Spotlight + AI handoff | Local search, AI tabs open the official ChatGPT/Claude/Codex/Claude Code |
 | 4 Surfaces and polish | Control Center, notifications, lock screen, global menu, glass, themed apps; first real hardware |
 | 5 Distro platform | Packages, own repo, live ISO booting in QEMU |
-| 6 System apps | Settings, Files, Welcome, Activity, Devices, App Center |
+| 6 System apps | Settings, Files, Welcome, Activity, Devices, App Center, remote control over Tailscale |
 | 7 Native AI and agents | Answers in Spotlight, agents, permission broker, local AI |
-| 8 Windows and gaming | Restart into Windows and back, Gaming Center, Wine |
+| 8 Windows and gaming | Restart into Windows and back, Gaming Center, Wine, game streaming |
 | 9 Installer, updates, release | Installer, rollback, signed updates, backup, phone sharing, public beta |
 
 ## Built with
@@ -54,7 +55,7 @@ All documents:
 | Planning | [Roadmap](docs/planning/roadmap.md) · [Task board](docs/planning/task-board.md) · [Risks](docs/planning/risks.md) |
 | Product | [Requirements](docs/product/requirements.md) · [Feature matrix](docs/product/feature-matrix.md) · [System apps](docs/product/system-apps.md) |
 | Design | [Desktop](docs/design/desktop.md) · [Spotlight](docs/design/spotlight.md) · [Visual references](docs/design/references.md) |
-| Architecture | [Overview](docs/architecture/overview.md) · [Stack](docs/architecture/stack.md) · [AI platform](docs/architecture/ai.md) · [Platform and dual boot](docs/architecture/platform.md) · [Apps and gaming](docs/architecture/compatibility.md) |
+| Architecture | [Overview](docs/architecture/overview.md) · [Stack](docs/architecture/stack.md) · [AI platform](docs/architecture/ai.md) · [Platform and dual boot](docs/architecture/platform.md) · [Apps and gaming](docs/architecture/compatibility.md) · [Remote access](docs/architecture/remote-access.md) |
 | Engineering | [Handbook](docs/engineering/index.md) · [Workflow](docs/engineering/workflow.md) · [Development](docs/engineering/development.md) · [Testing](docs/engineering/testing.md) · [VM setup](docs/engineering/vm-setup.md) · [Contracts](docs/engineering/integration-contracts.md) · [Licensing](docs/engineering/licensing.md) |
 | Decisions and security | [ADRs](docs/decisions/README.md) · [Threat model](docs/security/threat-model.md) · [Sources](docs/references.md) |
 

@@ -1,5 +1,6 @@
 # Changelog
 ## Unreleased (planning update)
+- Add built-in remote control over Tailscale: RDP remote desktop and Remote app in Phase 6 (T6.7, T6.8), Sunshine/Moonlight game streaming in Phase 8 (T8.7); requirements REM-01 to REM-03, design in docs/architecture/remote-access.md, off-by-default config.
 - Replace the J-xxx backlog with a ten-phase roadmap (T<phase>.<n> tickets, exit gates, "what must wait" rules); desktop first, all planned features kept (ADR-0006).
 - Shell hosted by Quickshell on KWin, with a window-list spike before Phase 1 (ADR-0005); Rust only for services from Phase 3 (ADR-0007).
 - Merge seven process documents into one workflow guide with two review levels; new task board with per-agent next steps.

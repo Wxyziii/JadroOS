@@ -10,6 +10,8 @@ Severity/likelihood are preliminary qualitative ratings; reassess at each phase 
 | Provider auth/terms change | high | high | adapter isolation, official docs, no unauthorized workarounds |
 | Instant quota misrouting | high | medium | explicit routing tests and no silent fallback |
 | Agent prompt injection/root abuse | critical | high | separate broker, approvals, sandbox, negative tests |
+| Remote access abuse or exposure | critical | medium | off by default, tailnet-only ports with test, second factor, portal consent, indicator, cross-review (T6.7) |
+| Unattended remote access unsupported on Wayland/KWin | medium | medium | attended mode first; unattended only via a supported, revocable portal grant (T6.7) |
 | Dual boot firmware/disk damage | critical | medium | separate disk, VM, readback, backups |
 | Rolling upgrade breaks GPU | high | medium | full upgrades, LTS, snapshot plus ESP plan |
 | Anti-cheat/app incompatibility | high | high | compatibility matrix, Windows fallback |

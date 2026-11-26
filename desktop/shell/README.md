@@ -15,6 +15,7 @@ Run it during development with `tools/dev-nested.sh` (KWin in a window) and chec
 | Control Center | T4.1 | 4 |
 | Notifications and Notification Center | T4.2 | 4 |
 | Global menu in the menu bar | T4.5 | 4 |
+| Remote session indicator with Disconnect | T6.8 | 6 |
 
 ## Rules
 - All colors, sizes, radii and timings come from `Tokens.qml` (design system), never hard-coded.

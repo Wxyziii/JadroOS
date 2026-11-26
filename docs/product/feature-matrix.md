@@ -23,6 +23,7 @@ Functional comparison, not a benchmark or exhaustive API inventory. Visual refer
 | Legacy apps | restricted | legacy Windows software | Wine/VM; test each app | 8 |
 | Android | no general APK runtime | no universal native runtime | Waydroid optional X | 9 (optional) |
 | macOS apps | native | not native | X, no general runtime | not planned |
+| Remote access | Screen Sharing (VNC) | Remote Desktop (RDP), Quick Assist | H: RDP (KRdp) + Sunshine/Moonlight, Tailscale only C | 6, 8 |
 | Phone sharing | Continuity/AirDrop | Phone Link/Nearby Sharing | H with open protocols | 9 |
 | iPhone mirroring | Apple ecosystem | limited iOS support | X, proprietary restriction | not planned |
 | Tablet display | Sidecar | device-dependent | H, experimental | 9 (experimental) |

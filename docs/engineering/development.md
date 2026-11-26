@@ -28,6 +28,7 @@ services/
   policy/          Rust authorization rules (reference library, used in Phase 7)
   search/          search service (Rust, Phase 3)
   agent/           AI agent service and providers (Rust, Phase 7)
+  remote/          remote access over Tailscale (Rust, Phase 6)
   system/          privileged broker (Rust, Phase 7)
 platform/
   session/         JadroOS login session (Phase 1)

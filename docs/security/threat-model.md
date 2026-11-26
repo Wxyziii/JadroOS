@@ -25,4 +25,7 @@ LUKS2 optional at install with verified recovery key; UEFI Secure Boot after tes
 ## Privacy defaults
 No telemetry, cloud history, screen capture, clipboard history, file indexing outside selected scope, or background agents by default. Clear data retention controls. Consent may be revoked; running jobs stop and grants invalidated. Incident process: contain, revoke keys, preserve redacted evidence, patch, notify affected users according to applicable obligations.
 
-**When security reviews happen:** lock screen (T4.3), search contract (T3.1), agent/tool/system broker (T7.4), screen capture and input (T7.5), boot switch (T8.1), installer and updates (T9.1–T9.3). Each is a cross-reviewed ticket ([workflow.md](../engineering/workflow.md)).
+**When security reviews happen:** lock screen (T4.3), search contract (T3.1), agent/tool/system broker (T7.4), screen capture and input (T7.5), remote access (T6.7, T8.7), boot switch (T8.1), installer and updates (T9.1–T9.3). Each is a cross-reviewed ticket ([workflow.md](../engineering/workflow.md)).
+
+## Remote access (Phase 6, 8)
+See [remote-access.md](../architecture/remote-access.md). Threats and mitigations: exposure beyond the tailnet (ports only on `tailscale0`, tested on every other interface; no Funnel or port forwarding); stolen tailnet device (second factor: remote password or paired client; Tailscale ACLs; revoke from Settings); silent watching (portal consent, always-visible indicator, start/end notifications, connection log); lock-screen bypass (remote sessions land on the normal lock screen); agent abuse (the agent service cannot enable remote access). Remote access is a cross-reviewed ticket (T6.7, T8.7).

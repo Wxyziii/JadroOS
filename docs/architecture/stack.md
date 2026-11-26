@@ -24,6 +24,7 @@ What JadroOS is built with, and from which [roadmap](../planning/roadmap.md) pha
 | Login / boot visuals | SDDM QML theme, Plymouth theme | 5 | Same language as the shell |
 | VM testing | QEMU/KVM + OVMF, QMP screenshots | 5 | Automated "boots to desktop" checks |
 | System apps | Qt 6 / QML apps with C++ or Rust backends, KIO for file operations | 6 | Settings, Files, Activity, Devices, App Center, Welcome |
+| Remote access | Tailscale, KRdp (RDP server via portals), RDP client in the Remote app; Sunshine + Moonlight for streaming | 6, 8 | Tailnet-only, standard clients on every platform ([remote-access.md](remote-access.md)) |
 | App formats | pacman, Flatpak, AppImage (Phase 6); Wine/Bottles, Distrobox (Phase 8) | 6, 8 | Separate runtimes per format ([compatibility.md](compatibility.md)) |
 | Agent service | Rust (zbus, Tokio, serde), provider adapters | 7 | Memory safety for network-facing code |
 | Privilege | polkit, systemd, D-Bus typed broker using `services/policy` | 7 | No arbitrary root API ([ADR-0003](../decisions/0003-privilege.md)) |
@@ -40,4 +41,4 @@ What JadroOS is built with, and from which [roadmap](../planning/roadmap.md) pha
 | Docs | Markdown, Mermaid | 0 | Versioned with the code |
 
 ## Decision gates
-Window list under KWin (T0.5) · Quickshell + KWin version pairing (Phase 1) · glass performance on real GPU (T4.6/T4.9) · reproducible archiso boot (T5.3) · provider terms and auth (T7.1) · polkit broker review (T7.4) · NVIDIA HDR/VRR (Phase 8) · signed updates and rollback (T9.2–T9.3). Every dependency is license-checked before distribution.
+Window list under KWin (T0.5) · Quickshell + KWin version pairing (Phase 1) · glass performance on real GPU (T4.6/T4.9) · reproducible archiso boot (T5.3) · unattended remote consent (T6.7) · provider terms and auth (T7.1) · polkit broker review (T7.4) · NVIDIA HDR/VRR (Phase 8) · signed updates and rollback (T9.2–T9.3). Every dependency is license-checked before distribution.

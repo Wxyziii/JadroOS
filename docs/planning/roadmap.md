@@ -18,9 +18,9 @@ Phases are dependency-based, not dates.
 | **3** | Spotlight + AI handoff | Spotlight finds apps, settings and files, and sends questions to ChatGPT/Claude/Codex/Claude Code | Both |
 | **4** | System surfaces and polish | Control Center, notifications, lock screen, global menu, glass, themed apps. **First tests on real hardware** | Claude, Codex, Owner |
 | **5** | Distro platform | Packages, your own pacman repo, a live ISO that boots into JadroOS in QEMU | Codex, Claude (login/boot visuals) |
-| **6** | System apps | Settings, Files, Welcome, Activity, Devices and App Center | Claude (UI), Codex (backends) |
+| **6** | System apps | Settings, Files, Welcome, Activity, Devices, App Center, and remote control over Tailscale | Claude (UI), Codex (backends) |
 | **7** | Native AI and agents | Answers inside Spotlight, Codex/Claude agents, permission broker, local AI | Codex (services), Claude (UI) |
-| **8** | Windows and gaming | One-click restart into Windows (and back), Gaming Center, Wine/Proton app support | Codex, Claude, Owner (hardware) |
+| **8** | Windows and gaming | One-click restart into Windows (and back), Gaming Center, Wine/Proton app support, low-latency game streaming | Codex, Claude, Owner (hardware) |
 | **9** | Installer, updates and release | Installer, snapshots and rollback, signed updates, backup, phone sharing, public beta, then stable | Both, Owner |
 
 ```mermaid
@@ -188,9 +188,12 @@ flowchart LR
 | T6.4 | Claude | T6.1 | Welcome / first-run app |
 | T6.5 | Claude + Codex | T6.1 | Activity (task manager) and Devices apps (SYS-01) |
 | T6.6 | Claude + Codex | T6.1 | App Center basics: pacman, Flatpak, AppImage (APP-01 part 1) |
+| T6.7 | Codex (Claude cross-reviews) | T6.2, T4.2 | Remote access host: Tailscale setup and sign-in, `jadro-remote` service, KRdp over the tailnet only, firewall rules, connection log; answers the unattended-access and after-reboot questions ([remote-access.md](../architecture/remote-access.md)) (REM-01) |
+| T6.8 | Claude | T6.7 | Settings → Remote Access pane, menu bar remote session indicator with Disconnect, and the Remote app ("Connect to…" other tailnet devices) (REM-01, REM-02) |
 
 **Exit gate**
 - [ ] FS-01 and SYS-01 core acceptance pass
+- [ ] REM-01 and REM-02: remote control works from another device over Tailscale only; ports closed on every other interface; indicator and Disconnect work
 - [ ] All apps keyboard-accessible, light/dark, included in the ISO
 
 ---
@@ -224,9 +227,10 @@ flowchart LR
 | T8.4 | Claude + Codex | T6.1 | Gaming Center: Steam/Proton library, compatibility info, per-game profiles |
 | T8.5 | Codex | T6.6 | Wine/Bottles per-app prefixes and compatibility tiers in App Center (APP-01 part 2) |
 | T8.6 | Owner | T8.1, T8.4 | Physical tests: boot switch on real firmware, NVIDIA games (CS2 native, Proton titles) |
+| T8.7 | Codex + Claude (cross-review) | T6.7, T8.4 | Game Streaming: Sunshine host (NVENC) over the tailnet, Moonlight pairing, toggle in Remote Access and Gaming Center; optional Wake-on-LAN (REM-03) |
 
 **Exit gate**
-- [ ] OS-02 and GAME-01 acceptance; unselected disk untouched in VM tests
+- [ ] OS-02, GAME-01 and REM-03 acceptance; unselected disk untouched in VM tests
 
 ---
 
@@ -264,6 +268,9 @@ flowchart LR
 | Login screen and boot splash | 5 |
 | Live ISO | 5 |
 | Settings, Files, Activity, Devices, App Center, Welcome | 6 |
+| Remote control of this PC over Tailscale (AnyDesk-style) | 6 |
+| Connecting to your other PCs from JadroOS | 6 |
+| Low-latency game streaming (Parsec-style) | 8 |
 | Restart into Windows and back | 8 |
 | Gaming Center, Steam/Proton, Wine apps | 8 |
 | Installer | 9 |

@@ -21,5 +21,11 @@
     "clipboard_history": false,
     "file_indexing": false,
     "persist_chat_history": false
+  },
+  "remote": {
+    "remote_desktop_enabled": false,
+    "game_streaming_enabled": false,
+    "unattended_access": false,
+    "network": "tailscale-only"
   }
 }

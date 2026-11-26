@@ -28,6 +28,7 @@ flowchart TD
 | shell (Quickshell, ADR-0005) | Menu bar, Dock, Spotlight UI, Control Center, notifications | logged-in user | 1–4 |
 | compositor (KWin decoration, effects, scripts) | windows, focus, workspaces, Alt+Tab, glass | session/compositor, no remote access | 1–4 |
 | search service | local ranking, app/settings/file index, action discovery | user service (Rust) | 3 |
+| remote access (jadro-remote, KRdp, Sunshine) | tailnet status, start/stop remote modes, session tracking, log | user services; tailnet-only ports | 6, 8 |
 | agent orchestrator | plan state, cancellation, budgets, tool proposals | isolated user process | 7 |
 | provider adapters | official handoff (Phase 3); auth and native inference (Phase 7) | user process, credentials scoped | 3, 7 |
 | tool broker | validate schema, classify risk, enforce approval and grants | user service | 7 |

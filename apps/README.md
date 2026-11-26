@@ -5,7 +5,7 @@ Normal Qt Quick applications (not part of the Quickshell shell) sharing the desi
 | App | Phase |
 |---|---|
 | Shared component library | 6 (T6.1) |
-| Settings, Files, Welcome, Activity, Devices, App Center | 6 |
+| Settings, Files, Welcome, Activity, Devices, App Center, Remote | 6 |
 | Intelligence (AI providers, history, consent) | 7 |
 | Gaming Center | 8 |
 | Backup, phone sharing | 9 |
