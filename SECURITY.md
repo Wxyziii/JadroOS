@@ -1,0 +1,2 @@
+# Security policy
+JadroOS is pre-alpha and not suitable for production. Do not run experimental agents with administrator rights or use the main PC for boot/disk testing. Report vulnerabilities privately to the repository owner (GitHub private vulnerability reporting if enabled); do not post credentials or exploitation details publicly. Include affected commit, reproduction in a disposable VM, impact and suggested mitigation. No guaranteed response SLA yet. See docs/security/threat-model.md.
